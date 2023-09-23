@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+      *
+      {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #header
+      {
+        background-color: red;
+        color: white;
+        text-align: center;
+        height: 60px;
+        width: 500px;
+      }
+      input[text]
+      {
+        border: none;
+      }
+      li:hover
+      {
+        background-color: grey;
+        color: black;
+      }
+      .checked
+      {
+        background-color: grey;
+      }
+      #list
+      {
+        height: 400px;
+        width: 500px;
+    }
+    .main{
+      margin-top: 100px;
+    }
+    ul{
+        list-style: none;
+        text-align: center;
+    }
+    li{
+     text-align: justify;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 5px;
+    }
+    label
+    {
+      cursor: pointer;
+    }
+    button
+    {
+      color: white;
+      border: none;
+      padding: 5px 10px;
+    }
+    #add
+    {
+      right: 25px;
+      color: black;
+      background-color: red;
+      height: 20px;
+    }
+    </style>
+</head>
+<body> 
+   <center> <div class="main">
+ <div id="header">
+    <h1>TODO LIST</h1>
+    <input type="text" placeholder="title" id="input">
+    <button id="add">ADD</button></div>
+   <div id="list">
+   <ul id="list_items">
+
+   </ul>
+   </div>
+</div></center>
+<script>
+   function handle()
+   {
+    var input=document.getElementById("input");
+    var text=input.value.trim();
+    if(text===""){
+    alert("please enter task");
+    }
+  var l=document.getElementById("list_items");
+  var li=document.createElement("li");
+  li.innerHTML=`
+  <label><input type="checkbox" onclick="toggleTaskCompletion(this)">${text}</label>
+  <button onclick="remove(this)" style=" background-color:black;border-radius:50%"><span class="material-symbols-outlined">
+delete
+</span></button>`;
+  l.appendChild(li);
+  input.value="";
+   }
+   function remove(button)
+   {
+   var l=document.getElementById("list_items");
+   var li=button.parentElement;
+   l.removeChild(li);
+   }
+   function toggleTaskCompletion(checkbox)
+   {
+    var li=checkbox.parentElement.parentElement;
+    li.classList.toggle("completed");
+   }
+//  task_edit_botton.addEventListener('click', ()=>{
+            
+//             if (task_edit_botton.innerText.toLowerCase() =="edit") {
+//                     task_input.removeAttribute("readonly");
+//                     task_input.focus();
+//                     task_edit_botton.innerText = "Save";
+//                     task_input.style.textDecoration="none"
+//             }else{
+//                 task_input.setAttribute("readonly", "readonly");
+//                 task_edit_botton.innerText ="Edit";
+                
+//             }
+//         });
+   const a=document.getElementById("add");
+   a.addEventListener("click",handle);
+</script>
+</body>
+</html>
